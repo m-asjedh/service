@@ -1,17 +1,58 @@
-import React from 'react';
-import ReactDOM from 'react-dom/client';
-import './index.css';
-import App from './App';
-import reportWebVitals from './reportWebVitals';
+import React from "react";
+import ReactDOM from "react-dom/client";
 
-const root = ReactDOM.createRoot(document.getElementById('root'));
+import Home from "./components/Home";
+import { createBrowserRouter, RouterProvider } from "react-router-dom";
+import AddVehicle from "./components/AddVehicle";
+import App from "./App";
+import "./index.css";
+
+import ManagePosts from "./components/ManagePosts";
+import EditUser from "./components/EditUser";
+import ContactUs from "./components/ContactUs";
+import Services from "./components/Services";
+import PrivacyPolicy from "./components/PrivacyPolicy";
+
+const router = createBrowserRouter([
+  {
+    path: "/",
+    element: <App />,
+    children: [
+      {
+        path: "/",
+        element: <Home />,
+      },
+      {
+        path: "add-vehicle",
+        element: <AddVehicle />,
+      },
+      {
+        path: "manage-vehicle",
+        element: <ManagePosts />,
+      },
+      {
+        path: "edituser/:id",
+        element: <EditUser />,
+      },
+      {
+        path: "services",
+        element: <Services />,
+      },
+      {
+        path: "contact-us",
+        element: <ContactUs />,
+      },
+      {
+        path: "privacy-policy",
+        element: <PrivacyPolicy/>,
+      },
+    ],
+  },
+]);
+
+const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
   <React.StrictMode>
-    <App />
+    <RouterProvider router={router} />
   </React.StrictMode>
 );
-
-// If you want to start measuring performance in your app, pass a function
-// to log results (for example: reportWebVitals(console.log))
-// or send to an analytics endpoint. Learn more: https://bit.ly/CRA-vitals
-reportWebVitals();
